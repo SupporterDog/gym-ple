@@ -43,13 +43,13 @@ class PLEEnv(gym.Env):
         return len(self._action_set)
 
     # return: (states, observations)
-    def _reset(self):
+    def reset(self):
         self.observation_space = spaces.Box(low=0, high=255, shape=(self.screen_width, self.screen_height, 3), dtype = np.uint8)
         self.game_state.reset_game()
         state = self._get_image()
         return state
 
-    def _render(self, mode='human', close=False):
+    def render(self, mode='human', close=False):
         if close:
             if self.viewer is not None:
                 self.viewer.close()
