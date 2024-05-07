@@ -84,7 +84,7 @@ if __name__ == '__main__':
     agent = DQNAgent(state_size, action_size)
 
     batch_size = 32
-    num_episodes = 1000
+    num_episodes = 10
     for e in range(num_episodes):
         state = env.reset()
         state = np.reshape(state, [1, state_size])
