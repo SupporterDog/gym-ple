@@ -30,7 +30,7 @@ class PLEEnv(gym.Env):
 
     def step(self, a):
         reward = self.game_state.act(self._action_set[a])
-        state = self._get_image()
+        state = self.get_image()
         terminal = self.game_state.game_over()
         return state, reward, terminal, {}
 
