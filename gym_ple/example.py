@@ -26,7 +26,7 @@ if __name__ == '__main__':
     # directory, including one with existing data -- all monitor files
     # will be namespaced). You can also dump to a tempdir if you'd
     # like: tempfile.mkdtemp().
-    outdir = '/content/PyGame-Learning-Environment/gym-ple/gym_ple/output1'
+    outdir = '/content/PyGame-Learning-Environment/output1'
     env = Monitor(env, directory=outdir, force=True)
 
     # This declaration must go *after* the monitor call, since the
