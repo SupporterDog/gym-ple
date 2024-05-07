@@ -46,7 +46,7 @@ class PLEEnv(gym.Env):
     def reset(self):
         self.observation_space = spaces.Box(low=0, high=255, shape=(self.screen_width, self.screen_height, 3), dtype = np.uint8)
         self.game_state.reset_game()
-        state = self._get_image()
+        state = self.get_image()
         return state
 
     def render(self, mode='human', close=False):
@@ -55,7 +55,7 @@ class PLEEnv(gym.Env):
                 self.viewer.close()
                 self.viewer = None
             return
-        img = self._get_image()
+        img = self.get_image()
         if mode == 'rgb_array':
             return img
         elif mode == 'human':
