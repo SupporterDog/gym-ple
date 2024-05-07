@@ -84,7 +84,7 @@ if __name__ == '__main__':
     # monitor's seeding creates a new action_space instance with the
     # appropriate pseudorandom number generator.
     env.seed(0)
-    state_size = env.observation_space.shape[0]
+    state_size = 288 * 512 * 3
     action_size = env.action_space.n
 
     # DQN agent setup
