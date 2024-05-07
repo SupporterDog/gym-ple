@@ -48,7 +48,7 @@ if __name__ == '__main__':
     # directory, including one with existing data -- all monitor files
     # will be namespaced). You can also dump to a tempdir if you'd
     # like: tempfile.mkdtemp().
-    video_folder = '/tmp/random-agent-results'
+    video_folder = '/content/PyGame-Learning-Environment/gym-ple/gym_ple/output2'
     env = RecordVideo(env, video_folder=video_folder, episode_trigger=lambda x: True)
 
     # This declaration must go *after* the monitor call, since the
