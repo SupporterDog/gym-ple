@@ -28,18 +28,18 @@ class PLEEnv(gym.Env):
         self.viewer = None
 
 
-    def _step(self, a):
+    def step(self, a):
         reward = self.game_state.act(self._action_set[a])
         state = self._get_image()
         terminal = self.game_state.game_over()
         return state, reward, terminal, {}
 
-    def _get_image(self):
+    def get_image(self):
         image_rotated = np.fliplr(np.rot90(self.game_state.getScreenRGB(),3)) # Hack to fix the rotated image returned by ple
         return image_rotated
 
     @property
-    def _n_actions(self):
+    def n_actions(self):
         return len(self._action_set)
 
     # return: (states, observations)
@@ -65,7 +65,7 @@ class PLEEnv(gym.Env):
             self.viewer.imshow(img)
 
 
-    def _seed(self, seed):
+    def seed(self, seed):
         rng = np.random.RandomState(seed)
         self.game_state.rng = rng
         self.game_state.game.rng = self.game_state.rng
