@@ -6,6 +6,14 @@ import gym
 from gym.wrappers import RecordVideo
 import gym_ple
 
+import random
+import numpy as np
+from collections import deque
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.optimizers import Adam
+
+
 # The world's simplest agent!
 class RandomAgent(object):
     def __init__(self, action_space):
