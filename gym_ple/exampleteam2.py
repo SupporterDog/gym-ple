@@ -2,7 +2,7 @@ import gym
 import random
 from gym.envs.registration import registry, register, make, spec
 import sys
-sys.path.append('C:/Users/cycrn/강화학습 공부/PyGame-Learning-Environment')
+sys.path.append('/content/PyGame-Learning-Environment')
 
 from ple_env import PLEEnv
 # Pygame
@@ -25,7 +25,7 @@ from gym.wrappers import RecordVideo
 #from gym.wrappers import Monitor
 
 import sys
-sys.path.append('C:/Users/cycrn/강화학습 공부/PyGame-Learning-Environment')
+sys.path.append('/content/PyGame-Learning-Environment')
 
 # The world's simplest agent!
 class RandomAgent(object):
