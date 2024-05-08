@@ -72,6 +72,8 @@ class DQNAgent:
                 self.memory.append((state, action, reward, next_state, done))
                 state = next_state
                 episode_score += reward
+                with open('/content/result/results.txt', 'a') as f:
+                        f.write('Hello')
                 if done:
                     episode_result = "episode: {}/{}, score: {}, e: {:.2}".format(e, num_episodes, time, self.epsilon)
                     print(episode_result)
