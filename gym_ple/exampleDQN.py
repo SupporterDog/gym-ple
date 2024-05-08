@@ -6,6 +6,7 @@ import ray
 from ray.rllib.algorithms.dqn import DQN, DQNConfig
 from ray.tune.registry import register_env
 from gym.wrappers.record_video import RecordVideo
+import gymnasium as gym
 
 from gym.envs.registration import registry, register, make, spec
 from gym_ple.ple_env import PLEEnv
