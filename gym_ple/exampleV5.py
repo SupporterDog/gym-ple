@@ -75,6 +75,8 @@ class DQNAgent:
                 with open('/content/result/results.txt', 'a') as f:
                         f.write('Hello')
                 if done:
+                    with open('/content/result/results.txt', 'a') as f:
+                        f.write('Sex')
                     episode_result = "episode: {}/{}, score: {}, e: {:.2}".format(e, num_episodes, time, self.epsilon)
                     print(episode_result)
                     with open('/content/result/results.txt', 'a') as f:
