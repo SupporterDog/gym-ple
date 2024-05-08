@@ -121,6 +121,9 @@ if __name__ == '__main__':
 
         if len(agent.memory) > batch_size:
             agent.replay(batch_size)
+            
+        if agent.epsilon > agent.epsilon_min:
+            agent.epsilon *= agent.epsilon_decay
 
     # 환경 종료
     env.close()
