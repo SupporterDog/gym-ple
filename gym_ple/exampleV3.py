@@ -84,11 +84,11 @@ if __name__ == '__main__':
     agent = DQNAgent(state_size, action_size)
 
     batch_size = 32
-    num_episodes = 50
+    num_episodes = 25
     for e in range(num_episodes):
         state = env.reset()
         state = np.reshape(state, [1, state_size])
-        for time in range(100):
+        for time in range(25):
             action = agent.act(state)
             next_state, reward, done, _ = env.step(action)
             reward = reward if not done else -10
