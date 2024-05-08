@@ -108,7 +108,23 @@ if __name__ == '__main__':
     os.makedirs(result_dir, exist_ok=True)
 
     # 에피소드 실행 및 학습
-    agent.run_episodes(env, num_episodes, batch_size)
+    for i_episode in range(num_episodes):
+        state = env.reset()
+        state = np.reshape(state, [1, state_size])
+        total_reward = 0
+        done = False
+        while not done:
+            action = agent.act(state)
+            next_state, reward, done, _ = env.step(action)
+            total_reward += reward
+            next_state = np.reshape(next_state, [1, state_size])
+            agent.remember(state, action, reward, next_state, done)
+            state = next_state
+
+        print("Episode:", i_episode + 1, "Total Reward:", total_reward)
+
+        if len(agent.memory) > batch_size:
+            agent.replay(batch_size)
 
     # 환경 종료
     env.close()
