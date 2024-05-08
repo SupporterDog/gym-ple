@@ -72,20 +72,16 @@ class DQNAgent:
                 self.memory.append((state, action, reward, next_state, done))
                 state = next_state
                 episode_score += reward
-                with open('/content/result/results.txt', 'a') as f:
-                        f.write('Hello')
-                if done:
-                    with open('/content/result/results.txt', 'a') as f:
-                        f.write('Sex')
-                    episode_result = "episode: {}/{}, score: {}, e: {:.2}".format(e, num_episodes, time, self.epsilon)
-                    print(episode_result)
-                    with open('/content/result/results.txt', 'a') as f:
-                        f.write(episode_result + '\n')
-                    break
+            episode_result = "episode: {}/{}, score: {}, e: {:.2}".format(e, num_episodes, time, self.epsilon)
+            print(episode_result)
+            with open('/content/result/results.txt', 'a') as f:
+                f.write(episode_result + '\n')
+            break
             if e % self.train_interval == 0:
                 self.replay(batch_size)
             if self.epsilon > self.epsilon_min:
                 self.epsilon *= self.epsilon_decay
+            
 
 
 if __name__ == '__main__':
