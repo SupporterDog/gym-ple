@@ -13,7 +13,6 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.optimizers import Adam
 
-
 class DQNAgent:
     def __init__(self, state_size, action_size):
         self.state_size = state_size
@@ -56,11 +55,11 @@ class DQNAgent:
             target_f[0][action] = target
             self.model.fit(state, target_f, epochs=1, verbose=0)
 
-
     def run_episodes(self, env, num_episodes, batch_size):
         for e in range(num_episodes):
             state = env.reset()
             state = np.reshape(state, [1, self.state_size])
+            episode_score = 0
             for time in range(25):
                 action = self.act(state)
                 next_state, reward, done, _ = env.step(action)
@@ -68,9 +67,12 @@ class DQNAgent:
                 next_state = np.reshape(next_state, [1, self.state_size])
                 self.memory.append((state, action, reward, next_state, done))
                 state = next_state
+                episode_score += reward
                 if done:
-                    print("episode: {}/{}, score: {}, e: {:.2}"
-                          .format(e, num_episodes, time, self.epsilon))
+                    episode_result = "episode: {}/{}, score: {}, e: {:.2}".format(e, num_episodes, time, self.epsilon)
+                    print(episode_result)
+                    with open('/content/result/results.txt', 'a') as f:
+                        f.write(episode_result + '\n')
                     break
             if e % self.train_interval == 0:
                 self.replay(batch_size)
@@ -93,9 +95,12 @@ if __name__ == '__main__':
     batch_size = 32
     num_episodes = 25
 
+    # 결과를 저장할 디렉토리 생성
+    result_dir = '/content/result'
+    os.makedirs(result_dir, exist_ok=True)
+
     # 에피소드 실행 및 학습
     agent.run_episodes(env, num_episodes, batch_size)
 
     # 환경 종료
     env.close()
-
